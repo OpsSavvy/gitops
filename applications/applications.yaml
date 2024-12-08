@@ -27,7 +27,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/OpsSavvy/loibiscom'
+    repoURL: 'https://github.com/OpsSavvy/k3stools'
     targetRevision: main
     path: sealedsecret-controller
   destination:
