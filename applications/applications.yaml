@@ -90,7 +90,7 @@ spec:
   source:
     repoURL: 'https://github.com/OpsSavvy/minecraft'
     targetRevision: main
-    path: /
+    path: .
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: minecraft
