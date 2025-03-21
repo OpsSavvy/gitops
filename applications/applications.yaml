@@ -104,17 +104,17 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: elasticsearch
+  name: eck-operator
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://github.com/OpsSavvy/k3stools'
     targetRevision: main
-    path: elasticsearch
+    path: eck-operator
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: monitoring
+    namespace: eck
   syncPolicy:
     automated:
       prune: true
@@ -125,17 +125,38 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kibana
+  name: eck-elasticsearch
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'https://github.com/OpsSavvy/k3stools'
     targetRevision: main
-    path: kibana
+    path: eck-elasticsearch
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: monitoring
+    namespace: eck
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: eck-kibana
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/OpsSavvy/k3stools'
+    targetRevision: main
+    path: eck-kibana
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: eck
   syncPolicy:
     automated:
       prune: true
