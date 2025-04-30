@@ -5,10 +5,13 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: 'https://github.com/OpsSavvy/loibiscom'
-    targetRevision: main
-    path: .
+  sources:
+    - repoURL: 'https://github.com/OpsSavvy/loibiscom'
+      targetRevision: main
+      path: .
+    - repoURL: 'https://github.com/OpsSavvy/configmap.git'
+      targetRevision: main
+      path: .
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: loibiscom
