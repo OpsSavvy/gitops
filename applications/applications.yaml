@@ -4,7 +4,7 @@ metadata:
   name: loibis.com
   namespace: argocd
   labels:
-    configmap-replicator: true
+    configmap-replicator: "true"
 spec:
   project: default
   sources:
