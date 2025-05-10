@@ -27,6 +27,29 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: susluoglu.com
+  namespace: argocd
+  labels:
+    configmap-replicator: "true"
+spec:
+  project: default
+  sources:
+    - repoURL: 'https://github.com/OpsSavvy/susluoglucom'
+      targetRevision: main
+      path: .
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: susluoglucom
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: sealedsecret-controller
   namespace: argocd
 spec:
